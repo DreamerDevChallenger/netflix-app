@@ -1,10 +1,12 @@
 const colors_Pallete = {
-  primary_red: "#df0707",
+  primary_red: "#e50914",
   second_red: "#ba0c0c",
   third_red: "#980a0a",
   fourth_red: "#780909",
   primary_background: "#ffffff",
   second_background: "#191919",
+  third_background: "#161616",
+  fourth_background: "#000000",
   primary_color: "#ffffff",
   second_color: "#d3d3d3",
 };

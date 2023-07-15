@@ -14,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  h1, p{
+    margin: 0;
+  }
+  .MuiPaper-root {
+    background-color: transparent !important;
+  }
 
 `;
 

@@ -13,16 +13,16 @@ const Header = () => {
     <HeaderStyled>
       <div id="left-header">
         <IconButton>
-          <Menu fontSize={"large"} />
+          <Menu />
         </IconButton>
         <img src={netflixLogo} alt="netflix logo" height={giga_large * 2} />
       </div>
       <div id="right-header">
-        <IconButton>
-          <Search fontSize={"large"} />
+        <IconButton className="selected">
+          <Search />
         </IconButton>
         <IconButton>
-          <MoreHoriz fontSize={"large"} />
+          <MoreHoriz />
         </IconButton>
       </div>
     </HeaderStyled>
