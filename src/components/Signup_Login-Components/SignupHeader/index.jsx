@@ -1,17 +1,41 @@
 import { SignupHeaderStyled } from "./styles";
 import { ReactComponent as Netflix } from "../../../assets/logo.svg";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
 import ButtonUI from "../../MuiStyled/Button";
 import { Language } from "@mui/icons-material";
 import SelectUi from "../../MuiStyled/Select";
 
 const SignupHeader = () => {
+  const headerRef = useRef(null);
   const [langue, setLangue] = useState("en");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const changeOnScroll = useCallback(() => {
+    const currentHeader = headerRef.current;
+    const position = Math.round(window.scrollY);
+
+    if (position > currentHeader.clientHeight) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeOnScroll);
+    return () => {
+      window.removeEventListener("scroll", changeOnScroll);
+    };
+  }, [changeOnScroll]);
 
   return (
-    <SignupHeaderStyled>
+    <SignupHeaderStyled
+      id="signup-header"
+      ref={headerRef}
+      className={isScrolled ? "isScrolled" : ""}
+    >
       <div className="left-header">
         <Netflix className="logo" />
       </div>

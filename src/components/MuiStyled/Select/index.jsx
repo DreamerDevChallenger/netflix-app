@@ -13,7 +13,11 @@ const SelectUi = ({ children, value, setState, labelId }) => {
       value={value}
       onChange={handleChange}
       labelId={labelId}
+      MenuProps={{
+        disableScrollLock: true,
+      }}
       inputProps={{
+        sx: { minWidth: 150 },
         MenuProps: {
           MenuListProps: {
             sx: {

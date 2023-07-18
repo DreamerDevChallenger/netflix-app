@@ -4,7 +4,11 @@ import ButtonUI from "../../MuiStyled/Button";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import SignupForm from "../Form/SingupForm";
 
+import { useState } from "react";
+
 const Banner = () => {
+  const [isHidden, setIsHidden] = useState(true);
+
   return (
     <BannerStyled>
       <Box className="intro-container">
@@ -17,11 +21,11 @@ const Banner = () => {
           ?
         </p>
         <Box className="button-container">
-          <ButtonUI type="submit">
+          <ButtonUI type="submit" onClick={() => setIsHidden(false)}>
             Get Started <KeyboardArrowRight />
           </ButtonUI>
         </Box>
-        <SignupForm />
+        <SignupForm isHidden={isHidden} />
       </Box>
     </BannerStyled>
   );

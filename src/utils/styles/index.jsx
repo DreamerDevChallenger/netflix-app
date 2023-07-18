@@ -11,6 +11,11 @@ const colors_Pallete = {
   second_color: "#d3d3d3",
 };
 
+const validations = {
+  error_color: "#fc3d3d",
+  correct_color: "#26d196",
+};
+
 const unit = {
   giga_small: 4,
   extra_small: 8,
@@ -21,4 +26,4 @@ const unit = {
   giga_large: 32,
 };
 
-export { colors_Pallete, unit };
+export { colors_Pallete, unit, validations };

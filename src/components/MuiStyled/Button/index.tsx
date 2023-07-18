@@ -5,9 +5,15 @@ import { colors_Pallete, unit } from "../../../utils/styles";
 const { primary_color, primary_red } = colors_Pallete;
 const { giga_small, extra_large } = unit;
 
-const ButtonUI = ({ children }) => {
+interface Props {
+  props: any;
+  children: React.ReactNode;
+}
+
+const ButtonUI = (props: Props) => {
   return (
     <Button
+      {...props}
       disableFocusRipple
       sx={{
         background: primary_red,
@@ -23,7 +29,7 @@ const ButtonUI = ({ children }) => {
         "&:focus-visible": { boxShadow: `0 0 5px 0px ${primary_color}` },
       }}
     >
-      {children}
+      {props.children}
     </Button>
   );
 };

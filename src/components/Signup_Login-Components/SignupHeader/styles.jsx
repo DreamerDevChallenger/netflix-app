@@ -4,11 +4,15 @@ import { unit } from "../../../utils/styles";
 const { extra_small } = unit;
 
 const SignupHeaderStyled = styled.header`
-  position: absolute;
-  z-index: 1;
+  &.isScrolled {
+    background: rgba(0, 0, 0, 0.75);
+  }
+  transition: 0.5s ease-in-out;
+  position: fixed;
+  z-index: 2;
   top: 0;
   width: 100%;
-  padding: 24px 175px;
+  padding: 12px 175px;
   display: flex;
   justify-content: space-between;
   .left-header {

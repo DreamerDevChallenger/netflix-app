@@ -10,6 +10,16 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
+    padding: 0 !important;
+    width:100%;
+    overflow-y: overlay !important; 
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: red;
+      border-radius: 10px;
+    }
   }
   * {
     box-sizing: border-box;
@@ -19,6 +29,9 @@ const GlobalStyle = createGlobalStyle`
   }
   .MuiPaper-root {
     background-color: transparent !important;
+  }
+  .MuiList-padding {
+    padding: 0 !important;
   }
 
 `;

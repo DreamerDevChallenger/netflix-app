@@ -7,14 +7,13 @@ const BannerStyled = styled.article`
   margin-top: 250px;
   display: flex;
   flex-direction: column;
-  gap: 96px;
+  gap: 48px;
   p {
     font-size: 20px;
     font-weight: 500;
   }
   .intro-container {
     displya: flex;
-
     h1 {
       font-size: 40px;
       font-weight: 800;
@@ -24,7 +23,8 @@ const BannerStyled = styled.article`
     align-self: flex-end;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 48px;
+    padding: 48px 0px;
   }
   .button-container {
     display: flex;
