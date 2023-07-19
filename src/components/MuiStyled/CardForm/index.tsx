@@ -3,13 +3,13 @@ import { Card } from "@mui/material";
 interface Props {
   children?: React.ReactNode;
   isHidden?: boolean;
-  props: any;
+  className: any;
 }
 
-const CardFormUI = (props: Props) => {
+const CardFormUI = ({ children, className }: Props) => {
   return (
     <Card
-      {...props}
+      className={className}
       sx={{
         background: `rgba(0,0,0,0.7) !important`,
         alignSelf: "center",
@@ -18,7 +18,7 @@ const CardFormUI = (props: Props) => {
         gap: "20px",
       }}
     >
-      {props.children}
+      {children}
     </Card>
   );
 };

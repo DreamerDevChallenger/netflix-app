@@ -31,6 +31,9 @@ const IndexStyled = styled.main`
       display: flex;
       flex-direction: column;
       gap: 24px;
+      .isAppear {
+        background: red;
+      }
     }
   }
 

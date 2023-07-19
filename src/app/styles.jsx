@@ -34,6 +34,13 @@ const AppStyled = styled.div`
   .MuiPaper-root {
     color: ${primary_color};
   }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: ${primary_color};
+    -webkit-background-clip: text !important;
+  }
 `;
 
 export { AppStyled };

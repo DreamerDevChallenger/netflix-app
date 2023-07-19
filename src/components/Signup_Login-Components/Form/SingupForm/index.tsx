@@ -15,42 +15,57 @@ import { useState } from "react";
 
 import { colors_Pallete } from "../../../../utils/styles";
 
-const SignupForm = ({ isHidden }) => {
-  const [passwordIsShowed, setPasswordIsShowed] = useState(false);
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+
+import { firebaseAuth } from "../../../../utils/firebase/firebase.config";
+
+const SignupForm = ({ isHidden }: { isHidden: boolean }) => {
+  const [passwordIsShowed, setPasswordIsShowed] = useState<Boolean>(false);
   const { second_background } = colors_Pallete;
 
-  const [validEmail, setValidEmail] = useState({
-    isError: false,
-    value: "",
+  const [formValue, setFormValue] = useState({
+    email: { value: "", isValid: false },
+    password: { value: "", isValid: false },
   });
 
-  const [validPassword, setValidPassword] = useState({
-    isError: false,
-    value: "",
-  });
+  const [errorForm, setErrorForm] = useState<Boolean>(false);
 
-  const handleEmailValidation = (e) => {
+  const handleEmailValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const regexp = new RegExp(
       "^[a-z0-9][-a-z0-9._]+@([-a-z0-9]+.)+[a-z]{2,5}$"
     );
 
-    setValidEmail({
-      isError: regexp.test(e.target.value),
-      value: e.target.value,
+    if (regexp.test(e.target.value)) {
+      setErrorForm(false);
+    } else {
+      setErrorForm(false);
+    }
+
+    setFormValue({
+      ...formValue,
+      email: { value: e.target.value, isValid: regexp.test(e.target.value) },
     });
   };
 
-  const handlePasswordValidation = (e) => {
+  const handlePasswordValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const regexp =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-    setValidPassword({
-      isError: regexp.test(e.target.value),
-      value: e.target.value,
+    if (regexp.test(e.target.value)) {
+      setErrorForm(false);
+    } else {
+      setErrorForm(false);
+    }
+
+    setFormValue({
+      ...formValue,
+      password: { value: e.target.value, isValid: regexp.test(e.target.value) },
     });
   };
 
-  console.log(validEmail);
   return (
     <CardFormUI className={`form-container ${isHidden ? "isHidden" : ""}`}>
       <CardContent>
@@ -60,13 +75,17 @@ const SignupForm = ({ isHidden }) => {
             <TextFieldUI
               label="Email"
               type="email"
-              autoComplete="username"
+              autoComplete="off"
               error={
-                !validEmail.isError && validEmail.value !== "" ? true : false
+                !formValue.email.isValid && formValue.email.value !== ""
+                  ? true
+                  : false
               }
-              value={validEmail.value}
+              value={formValue.email.value}
               required
-              onChange={(e) => handleEmailValidation(e)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleEmailValidation(e)
+              }
               InputProps={{
                 sx: { backgroundColor: second_background + "90" },
               }}
@@ -76,15 +95,17 @@ const SignupForm = ({ isHidden }) => {
             <TextFieldUI
               label="Password"
               type={passwordIsShowed ? "text" : "password"}
-              autoComplete="current-password"
+              autoComplete="off"
               required
               error={
-                !validPassword.isError && validPassword.value !== ""
+                !formValue.password.isValid && formValue.password.value !== ""
                   ? true
                   : false
               }
-              onChange={(e) => handlePasswordValidation(e)}
-              value={validPassword.value}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handlePasswordValidation(e)
+              }
+              value={formValue.password.value}
               InputProps={{
                 sx: { backgroundColor: second_background + "90" },
                 endAdornment: (
@@ -101,7 +122,7 @@ const SignupForm = ({ isHidden }) => {
             ></TextFieldUI>
           </FormControlUI>
           <CardActions>
-            <ButtonUI sx>Sign Up</ButtonUI>
+            <ButtonUI>Sign Up</ButtonUI>
           </CardActions>
         </form>
       </CardContent>

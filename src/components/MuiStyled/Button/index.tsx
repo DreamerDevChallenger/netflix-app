@@ -6,11 +6,11 @@ const { primary_color, primary_red } = colors_Pallete;
 const { giga_small, extra_large } = unit;
 
 interface Props {
-  props: any;
-  children: React.ReactNode;
+  props?: any;
+  children?: JSX.Element | JSX.Element[] | string | string[];
 }
 
-const ButtonUI = (props: Props) => {
+const ButtonUI: React.FC<Props> = (props) => {
   return (
     <Button
       {...props}
